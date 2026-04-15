@@ -2,4 +2,8 @@
 - placeholder　→　送信　→　DB
 - 送信ボタン押したときに
 
-- 履歴
+## 技術スタック
+- HTML
+- CSS
+- JavaScript
+- React
