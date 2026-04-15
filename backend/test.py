@@ -3,3 +3,5 @@ def get_name_with_age(name: str, age: int):
     return name_with_age
 
 print(get_name_with_age("Soma", 23))
+
+# 変更
