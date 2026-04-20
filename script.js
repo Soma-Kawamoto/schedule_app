@@ -42,7 +42,8 @@ async function postData() {
 
 // 履歴の取得・更新
 async function fetchHistory() {
-    const historyList = document.getElementById('historyList');
+    const historyListAt = document.getElementById('historyListAt');
+    const historyListContent = document.getElementById('historyListContent');
 
     try {
         const response = await fetch(API_URL);
@@ -50,14 +51,18 @@ async function fetchHistory() {
         if (response.ok) {
             const data = await response.json();
 
-            historyList.innerHTML = "";  // 履歴を一度空にする
+            historyListAt.innerHTML = "";  // 履歴を一度空にする
+            historyListContent.innerHTML = "";  // 履歴を一度空にする
             data.forEach(item => {
-                const li = document.createElement('li');
+                const liAt = document.createElement('li');
+                const liContent = document.createElement('li');
 
                 // JSONのラベル => {時刻},{コンテンツ}
-                li.textContent = `${at} : ${content}`;
+                liAt.textContent = item.at;  // "at"の部分を要修正
+                liContent.textContent = item.content;  // "content"の部分を要修正
 
-                historyList.appendChild(li);
+                historyListAt.appendChild(liAt);
+                historyListContent.appendChild(liContent);
             });
         } 
     } catch (error) {
