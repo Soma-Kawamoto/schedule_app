@@ -6,4 +6,4 @@
 - HTML
 - CSS
 - JavaScript
-- React
+- (React)

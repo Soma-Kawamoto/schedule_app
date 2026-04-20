@@ -15,7 +15,7 @@ a {
 }
 
 /* ボタン */
-.container {
+.input_container {
     width: 100%;
     height: 500px;
     display: flex;
@@ -23,7 +23,7 @@ a {
     justify-content: center;
     align-items: center;
 }
-.name-container {
+.name_container {
     margin-bottom: 30px;
 }
 
