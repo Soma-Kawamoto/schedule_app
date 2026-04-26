@@ -1,0 +1,31 @@
+// postData()
+inputタグからvalueを取得
+
+if (中身が空) {
+    alert(入力してください)
+    return
+}
+
+try
+- API_URL{content: text}をPOST
+- if response.ok
+    "送信成功!"
+    inputタグのvalueを空にする
+    fetchHistory()
+
+- else
+    "送信失敗"、response.status
+
+catch
+- 通信エラーをログに出す
+
+
+// fetchHistory()
+API_URLからデータをGET
+
+if response.ok
+    履歴表示リストを空にする
+    forEach（データ）
+        時刻用li、内容用liを作成
+        時刻リストへappendChild
+        内容リストへappendChild

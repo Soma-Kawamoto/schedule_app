@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const refreshButton = document.getElementById('refreshButton');
 
     sendButton.addEventListener('click', postData);
-    refreshButton.addEventListener('click', refreshData);
+    refreshButton.addEventListener('click', fetchHistory);
 
     fetchHistory();
 });
@@ -64,7 +64,9 @@ async function fetchHistory() {
                 historyListAt.appendChild(liAt);
                 historyListContent.appendChild(liContent);
             });
-        } 
+        } else {
+            alert("履歴の取得に失敗しました。ステータス：" + response.status)
+        }
     } catch (error) {
         console.error("取得エラー:", error);
     }
