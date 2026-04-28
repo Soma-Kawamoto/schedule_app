@@ -21,6 +21,15 @@ class UserTextData(BaseModel):
 async def root():
     return {"message": "Hello World"}
 
+@app.post("/text")  # http://127.0.0.1:8000/text
+async def text_input(data: UserTextData):
+    test_texts = data.content
+    print(f"入力された文字：{test_texts}")
+    return {
+        "status": "success",
+        "text": test_texts
+    }
+
 @app.post("/save")
 def save_text(text: str = Form(...)):
     conn = sqlite3.connect("local.db")
@@ -32,15 +41,6 @@ def save_text(text: str = Form(...)):
     conn.close()
 
     return {"status": "ok", "saved": text}
-
-@app.post("/text")  # http://127.0.0.1:8000/text
-async def text_input(data: UserTextData):
-    test_texts = data.content
-    print(f"入力された文字：{test_texts}")
-    return {
-        "status": "success",
-        "text": test_texts
-    }
 
 @app.get("/texts")
 def get_textx():
