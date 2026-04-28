@@ -1,7 +1,7 @@
 // ここにバックエンドのURLを入力
 const BASE_URL = 'http://127.0.0.1:8000';
 const ENDPOINTS = {
-    TEXT = `${BASE_URL}/text`
+    TEXT : `${BASE_URL}/text`
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,7 +25,7 @@ async function postData() {
     }
 
     try {
-        const response = await fetch(TEXT, {
+        const response = await fetch(ENDPOINTS.TEXT, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({content: text})
