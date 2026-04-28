@@ -1,6 +1,7 @@
 import sqlite3
 from fastapi import FastAPI, Form
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 from fastapi import FastAPI
 
@@ -12,6 +13,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
     )
+
+class UserTextData(BaseModel):
+    content: str
 
 @app.get("/")  # ユーザー目線で, get
 async def root():
@@ -28,6 +32,15 @@ def save_text(text: str = Form(...)):
     conn.close()
 
     return {"status": "ok", "saved": text}
+
+@app.post("/text")  # http://127.0.0.1:8000/text
+async def text_input(data: UserTextData):
+    test_texts = data.content
+    print(f"入力された文字：{test_texts}")
+    return {
+        "status": "success",
+        "text": test_texts
+    }
 
 @app.get("/texts")
 def get_textx():

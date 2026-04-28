@@ -1,5 +1,5 @@
 // ここにバックエンドのURLを入力
-const API_URL = '';
+const API_URL = 'http://127.0.0.1:8000';
 
 document.addEventListener('DOMContentLoaded', () => {
     const sendButton = document.getElementById('sendButton');
