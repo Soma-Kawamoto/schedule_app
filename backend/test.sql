@@ -1,0 +1,1 @@
+SELECT content FROM texts
