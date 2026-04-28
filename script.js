@@ -51,8 +51,8 @@ async function fetchHistory() {
         if (response.ok) {
             const data = await response.json();
 
-            historyListAt.innerHTML = "";  // 履歴を一度空にする
-            historyListContent.innerHTML = "";  // 履歴を一度空にする
+            historyListAt.innerHTML = "";
+            historyListContent.innerHTML = "";
             data.forEach(item => {
                 const liAt = document.createElement('li');
                 const liContent = document.createElement('li');
