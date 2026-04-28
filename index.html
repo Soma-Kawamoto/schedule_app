@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>test</title>
+
+    <link rel="stylesheet" href="/frontend/css/reset.css">
+    <link rel="stylesheet" href="/frontend/css/style.css">
 </head>
+
 <body>
+    <div class="input">
+        <div class="name_container">
+            <p>name:</p>
+            <input type="name" placeholder="名前を入力してください" class="namebox" id="messageInput">
+        </div>
+        <button id="sendButton">送信</button>
+    </div>
+
+    <div class="history_container">
+        <h2>履歴</h2>
+        <button id="refreshButton">履歴の更新</button>
+    </div>
+    <div class="historyList">
+        <ul id="historyListAt">
+            <li>2026-04-20 13:30</li>
+            <li>2026-04-20 13:30</li>
+            <li>2026-04-20 13:30</li>
+            <li>2026-04-20 13:30</li>
+            <li>2026-04-20 13:30</li>
+            <li>2026-04-20 13:30</li>
+        </ul>
+        <ul id="historyListContent">
+            <li>こんにちは</li>
+            <li>こんにちは</li>
+            <li>こんにちは</li>
+            <li>こんにちは</li>
+            <li>こんにちは</li>
+            <li>こんにちは</li>
+        </ul>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
