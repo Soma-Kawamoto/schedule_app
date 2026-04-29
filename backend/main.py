@@ -55,7 +55,7 @@ async def text_input(data: UserTextData):
     print(f"入力された文字：{test_texts}, 入力時間：{input_time}")  # backend側のターミナルに出力
     return {
         "status": "success",
-        "text": test_texts,
+        "content": test_texts,
         "time": input_time
     }
 
