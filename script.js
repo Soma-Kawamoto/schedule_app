@@ -61,8 +61,8 @@ async function fetchHistory() {
                 const liContent = document.createElement('li');
 
                 // JSONのラベル => {時刻},{コンテンツ}
-                liAt.textContent = item.at;  // "at"の部分を要修正
-                liContent.textContent = item.content;  // "content"の部分を要修正
+                liAt.textContent = item.time; // "time"というラベル名
+                liContent.textContent = item.content;  // "content"
 
                 historyListAt.appendChild(liAt);
                 historyListContent.appendChild(liContent);
