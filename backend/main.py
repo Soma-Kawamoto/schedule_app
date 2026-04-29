@@ -14,8 +14,28 @@ app.add_middleware(
     allow_headers=["*"]
     )
 
+
+######データベースの初期化を行う######
+def init_db():
+    conn = sqlite3.connect("local.db")
+    cursor = conn.cursor()
+    # timeとcontentを保存するtextsテーブルを作成（すでに存在する場合はスキップ）
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS texts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            time TEXT NOT NULL,
+            content TEXT NOT NULL
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+init_db() # ファイル読み込み時に実行
+####################################
+
 class UserTextData(BaseModel):
     content: str
+    time: str
 
 @app.get("/")  # ユーザー目線で, get
 async def root():
@@ -24,33 +44,28 @@ async def root():
 @app.post("/text")  # http://127.0.0.1:8000/text
 async def text_input(data: UserTextData):
     test_texts = data.content
-    print(f"入力された文字：{test_texts}")
-    return {
-        "status": "success",
-        "text": test_texts
-    }
-##########################################################################
-@app.post("/save")
-def save_text(text: str = Form(...)):
+    input_time = data.time
+
     conn = sqlite3.connect("local.db")
-    cursor = conn.cursor()  # SQLをpython上で使えるようにするクラス？
-
-    cursor.execute("INSERT INTO texts (content) VALUES (?)", (text,))
-
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO texts (time, content) VALUES (?, ?)", (input_time, test_texts))
     conn.commit()
     conn.close()
 
-    return {"status": "ok", "saved": text}
+    print(f"入力された文字：{test_texts}, 入力時間：{input_time}")  # backend側のターミナルに出力
+    return {
+        "status": "success",
+        "text": test_texts,
+        "time": input_time
+    }
 
 @app.get("/texts")
-def get_textx():
+def get_texts():
     conn = sqlite3.connect("local.db")
     cursor = conn.cursor()
-
-    cursor.execute("SELECT content FROM texts")
+    cursor.execute("SELECT time, content FROM texts ORDER BY id ASC")
     rows = cursor.fetchall()
-
     conn.close()
 
-    texts = [row[0] for row in rows]
-    return {"texts": texts}
+    text_l = [{"time":r[0], "content":r[1]} for r in rows]
+    return {"texts": text_l}
