@@ -1,7 +1,8 @@
 // ここにバックエンドのURLを入力
 const BASE_URL = 'http://127.0.0.1:8000';
 const ENDPOINTS = {
-    TEXT : `${BASE_URL}/text`
+    TEXT : `${BASE_URL}/text`,
+    TESTS : `${BASE_URL}/texts`
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -49,7 +50,7 @@ async function fetchHistory() {
     const historyListContent = document.getElementById('historyListContent');
 
     try {
-        const response = await fetch(API_URL);
+        const response = await fetch(ENDPOINTS.TEXTS);
 
         if (response.ok) {
             const data = await response.json();
